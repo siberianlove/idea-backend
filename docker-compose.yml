@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+
+  ide-backend:
+    build:
+      context: .
+      args:
+        #DOCKER_GROUP_ID: `getent group docker | cut -d: -f3`
+        DOCKER_GROUP_ID: 990
+    hostname: ide-backend
+    container_name: ide-backend
+    ports:
+      - '9922:22'
+    #entrypoint: sh
+    #tty: true
+    environment:
+      - SSH_KEY=ssh-ed25519 AAAA user@host
+    volumes:
+      - ~/:/root
+      - /var/run/docker.sock:/var/run/docker.sock
+
